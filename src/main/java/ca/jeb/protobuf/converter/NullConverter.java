@@ -1,9 +1,9 @@
 // Copyright (c) 2014 Morgan Stanley & Co. Incorporated, All Rights Reserved
 
-package ca.jeb.gpb.converter;
+package ca.jeb.protobuf.converter;
 
-import ca.jeb.gpb.IProtobufConverter;
-import ca.jeb.gpb.JGPBAnnotationException;
+import ca.jeb.protobuf.IProtobufConverter;
+import ca.jeb.protobuf.JGPBAnnotationException;
 
 /**
  * This is a class to convert Strings to Date objects.

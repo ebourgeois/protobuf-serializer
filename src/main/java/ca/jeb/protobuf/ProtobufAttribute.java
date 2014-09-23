@@ -1,6 +1,6 @@
 // Copyright (c) 2014 Erick Bourgeois, All Rights Reserved
 
-package ca.jeb.gpb;
+package ca.jeb.protobuf;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,7 +8,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import ca.jeb.common.infra.JStringUtils;
-import ca.jeb.gpb.converter.NullConverter;
+import ca.jeb.protobuf.converter.NullConverter;
 
 /**
  * ProtoBufAttribute.

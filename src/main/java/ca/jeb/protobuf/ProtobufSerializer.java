@@ -1,6 +1,6 @@
 // Copyright (c) 2014 Erick Bourgeois, All Rights Reserved
 
-package ca.jeb.gpb;
+package ca.jeb.protobuf;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -20,11 +20,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import ca.jeb.common.gpb.ProtoBufSerializer;
 import ca.jeb.common.infra.JException;
 import ca.jeb.common.infra.JReflectionUtils;
 import ca.jeb.common.infra.JStringUtils;
-import ca.jeb.gpb.converter.NullConverter;
+import ca.jeb.protobuf.converter.NullConverter;
 
 import com.google.protobuf.GeneratedMessage;
 
@@ -37,7 +36,7 @@ public class ProtobufSerializer<G extends GeneratedMessage, P extends Object> im
   private static final Map<String, Map<Field, ProtobufAttribute>>            CLASS_TO_FIELD_MAP_CACHE = new ConcurrentHashMap<>();
 
   private static final Logger                                                LOGGER                   = LoggerFactory
-                                                                                                              .getLogger(ProtoBufSerializer.class);
+                                                                                                              .getLogger(ProtobufSerializer.class);
 
   /**
    * @see ca.jeb.common.gpb.IProtoBufGenerator#toProtoBuf(java.lang.Object)

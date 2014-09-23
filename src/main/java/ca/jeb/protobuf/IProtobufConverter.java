@@ -1,6 +1,6 @@
 // Copyright (c) 2014 Erick Bourgeois, All Rights Reserved
 
-package ca.jeb.gpb;
+package ca.jeb.protobuf;
 
 /**
  * An interface class that any classes attribute needs to be
