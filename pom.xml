@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ca.jeb</groupId>
+  <artifactId>protobuf-serializer</artifactId>
+  <version>2014.09.23</version>
+   <name>Protocol Buffer Examples</name>
+  <description>Protocol Buffer examples by Erick Bourgeois</description>
+  <inceptionYear>2014</inceptionYear>
+  <developers>
+    <developer>
+        <id>ebourgeois</id>
+        <email>erick@jeb.ca</email>
+        <name>Erick Bourgeois</name>
+        <url>https://github.com/ebourgeois</url>
+    </developer>
+  </developers>
+  <properties>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.7</maven.compiler.source>
+  </properties>
+  <repositories>
+      <repository>
+         <id>jeb-common-mvn-repo</id>
+         <url>https://raw.github.com/ebourgeois/common-java/mvn-repo/</url>
+       </repository>
+  </repositories>
+  <dependencies>
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>2.6.0</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-core</artifactId>
+      <version>1.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+      <version>1.7.7</version>
+    </dependency>
+    <dependency>
+      <groupId>ca.jeb</groupId>
+      <artifactId>common-java</artifactId>
+      <version>2014.09.21</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.1</version>
+          <executions>
+             <execution>
+                <id>compile</id>
+                <configuration>
+                   <showDeprecation>true</showDeprecation>
+                   <showWarnings>true</showWarnings>
+                   <compilerArguments>
+                      <source>${maven.compiler.target}</source>
+                      <!-- <target>${maven.compiler.source}</target> -->
+                   </compilerArguments>
+                </configuration>
+             </execution>
+          </executions>
+       </plugin>
+    </plugins>
+  </build>
+</project>
