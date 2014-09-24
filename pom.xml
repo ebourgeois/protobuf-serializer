@@ -29,7 +29,7 @@
   <repositories>
       <repository>
          <id>jeb-common-mvn-repo</id>
-         <url>https://raw.github.com/ebourgeois/protobuf-serializer/mvn-repo/</url>
+         <url>https://raw.github.com/ebourgeois/common-java/mvn-repo/</url>
        </repository>
   </repositories>
   <dependencies>
@@ -57,6 +57,12 @@
       <groupId>org.slf4j</groupId>
       <artifactId>log4j-over-slf4j</artifactId>
       <version>1.7.7</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.4</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <build>
