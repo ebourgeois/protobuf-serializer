@@ -69,4 +69,13 @@ public class Person
   {
     this.address = address;
   }
+
+  /**
+   * @see java.lang.Object#toString()
+   */
+  @Override
+  public String toString()
+  {
+    return "Person [name=" + name + ", age=" + age + ", address=" + address + "]";
+  }
 }

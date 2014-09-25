@@ -9,12 +9,12 @@ import ca.jeb.common.infra.JException;
  * 
  * @see ca.jeb.common.gpb.ProtoBufSerializer
  */
-public class JGPBAnnotationException extends JException
+public class ProtobufException extends JException
 {
   /**
    * @param e - Exception
    */
-  public JGPBAnnotationException(Exception e)
+  public ProtobufException(Exception e)
   {
     super(e);
   }
@@ -22,8 +22,17 @@ public class JGPBAnnotationException extends JException
   /**
    * @param string
    */
-  public JGPBAnnotationException(String string)
+  public ProtobufException(String string)
   {
     super(string);
+  }
+
+  /**
+   * @param string
+   * @param e
+   */
+  public ProtobufException(String string, Exception e)
+  {
+    super(string, e);
   }
 }

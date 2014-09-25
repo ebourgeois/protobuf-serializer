@@ -13,12 +13,12 @@ public interface IProtobufConverter
    * @return Object
    * @throws CMSCoreAnnotationException
    */
-  Object convertToProtoBuf(Object sourceObject) throws JGPBAnnotationException;
+  Object convertToProtobuf(Object sourceObject) throws ProtobufAnnotationException;
 
   /**
    * @param sourceObject
    * @return Object
    * @throws CMSCoreAnnotationException
    */
-  Object convertFromProtoBuf(Object sourceObject) throws JGPBAnnotationException;
+  Object convertFromProtobuf(Object sourceObject) throws ProtobufAnnotationException;
 }

@@ -2,34 +2,35 @@
 
 package ca.jeb.protobuf;
 
-import ca.jeb.common.infra.JException;
-
-import com.google.protobuf.GeneratedMessage;
+import com.google.protobuf.Message;
 
 /**
- * Interface for generating ProtoBuf messages, where generic G
- * is the Protobuf class and P is the Pojo class.
+ * Interface for generating Protobuf serialization; generally only the
+ * ProtobufSerializer should implement this, but by all means, feel free
+ * to create your own!
  * 
  * @author <a href="mailto:erick@jeb.ca">Erick Bourgeois</a>
  */
-public interface IProtobufSerializer<G extends GeneratedMessage, P extends Object>
+public interface IProtobufSerializer
 {
   /**
-   * Implement the toProtoBuf method that will convert this
+   * Implement the toProtobuf method that will convert this
    * object to a GeneratedMessage G.
    * 
-   * @param pojo - Pojo object of type P
-   * @return
-   * @throws JException
+   * @param pojo - POJO object to serialize into a Protobuf of generic type G
+   * @return Message - a new instance of a Protobuf GeneratedMessage, which implements Message
+   * @throws ProtobufException
    */
-  G toProtoBuf(P pojo) throws JException;
+  Message toProtobuf(Object pojo) throws ProtobufException;
 
   /**
-   * Implement the fromProtoBuf method to set all ProtoBufAttributes
-   * on <i>this</i> POJO class.
+   * Implement the fromProtobuf method to set all ProtoBufAttributes
+   * on the supplied POJO class.
    * 
-   * @param protoBuf - GeneratedMessage G
-   * @throws JException
+   * @param protoBuf - GeneratedMessage, the object to "deserialize" into a POJO
+   * @param pojoClazz - Class type to "deserialize" to
+   * @return Object - a new instance of <i>pojoClazz</i>
+   * @throws ProtobufException
    */
-  P fromProtoBuf(G protoBuf) throws JException;
+  Object fromProtobuf(Message protoBuf, Class<? extends Object> pojoClazz) throws ProtobufException;
 }
