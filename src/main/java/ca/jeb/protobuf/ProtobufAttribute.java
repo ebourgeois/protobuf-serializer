@@ -63,14 +63,9 @@ public @interface ProtobufAttribute
   String pojoSetter() default JStringUtils.EMPTY;
 
   /**
-   * @return
-   */
-  Class<? extends Object> pojoSetterArgClass() default NullClass.class;
-
-  /**
    * This should be set to a class that implements the IProtoBufConverter.
    * This converter will be used to convert the value from the
-   * POJO objects to the Google ProtoBuf object. {@link NullConverter}
+   * POJO objects to the Google ProtoBuf object; default is {@link NullConverter}.
    * 
    * @return
    */

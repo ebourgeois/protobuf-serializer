@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ca.jeb</groupId>
   <artifactId>protobuf-serializer</artifactId>
-  <version>2014.09.29</version>
+  <version>2014.09.30</version>
   <name>A Java POJO to and from Google Protobuf serializer</name>
   <description>Use annotations to serialize POJO classes to Google Protobuf in Java</description>
   <inceptionYear>2014</inceptionYear>
@@ -18,6 +18,7 @@
     <github.global.server>github</github.global.server>
     <maven.compiler.target>1.7</maven.compiler.target>
     <maven.compiler.source>1.7</maven.compiler.source>
+    <proto.executable.path>C:\Users\boureric\dev\bin\protoc</proto.executable.path>
   </properties>
   <distributionManagement>
     <repository>
@@ -56,7 +57,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.4</version>
+      <version>4.11</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -73,9 +74,96 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.12.4</version>
             </plugin>
+            <plugin>
+                <groupId>org.eclipse.m2e</groupId>
+                <artifactId>lifecycle-mapping</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <lifecycleMappingMetadata>
+                        <pluginExecutions>
+                            <pluginExecution>
+                                <pluginExecutionFilter>
+                                    <groupId>org.apache.maven.plugins</groupId>
+                                    <artifactId>maven-antrun-plugin</artifactId>
+                                    <versionRange>[1.3,)</versionRange>
+                                    <goals>
+                                        <goal>run</goal>
+                                    </goals>
+                                </pluginExecutionFilter>
+                                <action>
+                                    <ignore></ignore>
+                                </action>
+                            </pluginExecution>
+                            <pluginExecution>
+                                <pluginExecutionFilter>
+                                    <groupId>org.codehaus.mojo</groupId>
+                                    <artifactId>build-helper-maven-plugin</artifactId>
+                                    <versionRange>[1.0,)</versionRange>
+                                    <goals>
+                                        <goal>test-compile</goal>
+                                        <goal>add-source</goal>
+                                        <goal>add-test-source</goal>
+                                    </goals>
+                                </pluginExecutionFilter>
+                                <action>
+                                    <execute />
+                                </action>
+                            </pluginExecution>
+                        </pluginExecutions>
+                    </lifecycleMappingMetadata>
+                </configuration>
+            </plugin>
         </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>gen-proto-classes</id>
+            <phase>generate-test-sources</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                 <fail message="The proto.executable.path is not set, please set this to the location of your protoc command.">
+                     <condition>
+                         <not><isset property="proto.executable.path" /></not>
+                     </condition>
+                 </fail>
+                 <mkdir dir="${basedir}/target/generated-test-sources" />
+                 <echo>Generating Google Protbuf classes...</echo> 
+                 <exec executable="${proto.executable.path}" failonerror="true" logerror="true" >  
+                     <arg value="--proto_path=${basedir}/src/test/resources/proto" />
+                     <arg value="--java_out=${basedir}/target/generated-test-sources" />
+                     <arg value="${basedir}/src/test/resources/proto/ca.jeb.Message.proto" />
+                 </exec>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+	      <groupId>org.codehaus.mojo</groupId>
+	      <artifactId>build-helper-maven-plugin</artifactId>
+	      <version>1.9.1</version>
+	      <executions>
+	        <execution>
+	          <id>add-test-sources</id>
+	          <phase>generate-test-sources</phase>
+	          <goals>
+	            <goal>add-test-source</goal>
+	          </goals>
+	          <configuration>
+	            <sources>
+	              <source>${basedir}/target/generated-test-sources</source>
+	            </sources>
+	          </configuration>
+	        </execution>
+	      </executions>
+	    </plugin>
       <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>

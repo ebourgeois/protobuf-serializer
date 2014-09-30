@@ -22,10 +22,10 @@ public class ProtobufSerializerPerfTest
   private static final ProtobufSerializer SERIALIZER                = new ProtobufSerializer();
 
   /**
-   * Test method for {@link ca.jeb.protobuf.ProtobufSerializer#toProtoBuf(java.lang.Object)}.
+   * Test method for {@link ca.jeb.protobuf.ProtobufSerializer#toProtobuf(java.lang.Object)}.
    */
   @Test
-  public void perfTestToProtoBuf()
+  public void perfTestToProtobuf()
   {
     try
     {
@@ -48,7 +48,7 @@ public class ProtobufSerializerPerfTest
       final long elapsedTimeMS = TimeUnit.MILLISECONDS.convert(elapsedTime, TimeUnit.NANOSECONDS);
 
       System.out
-              .println("Performance Test of toProtoBuf took " + elapsedTimeMS + "ms to serialize " + TOTAL_ITERATIONS + " simple objects");
+              .println("Performance Test of toProtobuf took " + elapsedTimeMS + "ms to serialize " + TOTAL_ITERATIONS + " simple objects");
 
       Assert.assertTrue("The performance test too much too long", elapsedTimeMS < MAX_EXPECTED_ELAPSED_TIME * 2);
     }
@@ -59,10 +59,10 @@ public class ProtobufSerializerPerfTest
   }
 
   /**
-   * Test method for {@link ca.jeb.protobuf.ProtobufSerializer#fromProtoBuf(com.google.protobuf.GeneratedMessage)}.
+   * Test method for {@link ca.jeb.protobuf.ProtobufSerializer#fromProtobuf(com.google.protobuf.GeneratedMessage)}.
    */
   @Test
-  public void testFromProtoBuf()
+  public void testFromProtobuf()
   {
     try
     {
@@ -80,7 +80,7 @@ public class ProtobufSerializerPerfTest
       final long elapsedTime = endTime - startTime;
       final long elapsedTimeMS = TimeUnit.MILLISECONDS.convert(elapsedTime, TimeUnit.NANOSECONDS);
 
-      System.out.println("Performance Test of fromProtoBuf took " + elapsedTimeMS + "ms to deserialize " + TOTAL_ITERATIONS
+      System.out.println("Performance Test of fromProtobuf took " + elapsedTimeMS + "ms to deserialize " + TOTAL_ITERATIONS
               + " to simple objects");
 
       Assert.assertTrue("The performance test too much too long", elapsedTimeMS < MAX_EXPECTED_ELAPSED_TIME * 2);
