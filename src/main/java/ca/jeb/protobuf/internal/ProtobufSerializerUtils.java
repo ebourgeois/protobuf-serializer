@@ -7,9 +7,11 @@ import java.lang.reflect.Field;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.WeakHashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import ca.jeb.common.infra.JReflectionUtils;
@@ -26,13 +28,16 @@ import com.google.protobuf.GeneratedMessage;
  */
 public final class ProtobufSerializerUtils
 {
-  private static final Map<String, Map<Field, ProtobufAttribute>> CLASS_TO_FIELD_MAP_CACHE         = new ConcurrentHashMap<>();
+  private static final Map<String, Map<Field, ProtobufAttribute>> CLASS_TO_FIELD_MAP_CACHE         = Collections
+                                                                                                           .synchronizedMap(new WeakHashMap<String, Map<Field, ProtobufAttribute>>());
 
   // Internal cache to hold onto Class -> fieldName -> setter
-  private static final Map<String, Map<String, String>>           CLASS_TO_FIELD_SETTERS_MAP_CACHE = new ConcurrentHashMap<>();
+  private static final Map<String, Map<String, String>>           CLASS_TO_FIELD_SETTERS_MAP_CACHE = Collections
+                                                                                                           .synchronizedMap(new WeakHashMap<String, Map<String, String>>());
 
   // Internal cache to hold onto Class -> fieldName -> getter
-  private static final Map<String, Map<String, String>>           CLASS_TO_FIELD_GETTERS_MAP_CACHE = new ConcurrentHashMap<>();
+  private static final Map<String, Map<String, String>>           CLASS_TO_FIELD_GETTERS_MAP_CACHE = Collections
+                                                                                                           .synchronizedMap(new WeakHashMap<String, Map<String, String>>());
 
   /**
    * Retrieve the ProtobufClass based on the POJO value. The returned value may get converted,

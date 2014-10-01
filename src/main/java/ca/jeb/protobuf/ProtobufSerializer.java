@@ -12,7 +12,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -33,11 +32,7 @@ import com.google.protobuf.Message.Builder;
  */
 public class ProtobufSerializer implements IProtobufSerializer
 {
-  private static final Map<Class<? extends Object>, Class<? extends Object>> GPB_JAVA_MAPPING         = new ConcurrentHashMap<>();
-  private static final Map<String, Map<Field, ProtobufAttribute>>            CLASS_TO_FIELD_MAP_CACHE = new ConcurrentHashMap<>();
-
-  private static final Logger                                                LOGGER                   = LoggerFactory
-                                                                                                              .getLogger(ProtobufSerializer.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(ProtobufSerializer.class);
 
   /**
    * @see ca.jeb.protobuf.IProtobufSerializer#toProtobuf(java.lang.Object)
@@ -429,11 +424,7 @@ public class ProtobufSerializer implements IProtobufSerializer
       protobufValue = converter.convertFromProtobuf(protobufValue);
     }
 
-    Class<? extends Object> argClazz = protobufAttribute.pojoSetterArgClass();
-    if (argClazz == NullClass.class)
-    {
-      argClazz = protobufValue.getClass();
-    }
+    Class<? extends Object> argClazz = protobufValue.getClass();
 
     JReflectionUtils.runSetter(pojo, setter, protobufValue, argClazz);
   }
