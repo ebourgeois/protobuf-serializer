@@ -216,7 +216,7 @@ public final class ProtobufSerializerUtils
     }
 
     // Finally override setter with a value that is configured in ProtobufAttribute annotation
-    final String configedSetter = protobufAttribute.protoBufSetter();
+    final String configedSetter = protobufAttribute.protobufSetter();
     if (!configedSetter.equals(JStringUtils.EMPTY))
     {
       setter = configedSetter;
@@ -260,9 +260,9 @@ public final class ProtobufSerializerUtils
     {
       getter += "List";
     }
-    if (!protobufAttribute.protoBufGetter().isEmpty())
+    if (!protobufAttribute.protobufGetter().isEmpty())
     {
-      return protobufAttribute.protoBufGetter();
+      return protobufAttribute.protobufGetter();
     }
 
     map.put(fieldName, getter);

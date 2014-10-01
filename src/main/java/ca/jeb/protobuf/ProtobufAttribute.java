@@ -33,7 +33,7 @@ public @interface ProtobufAttribute
    * 
    * @return
    */
-  String protoBufSetter() default JStringUtils.EMPTY;
+  String protobufSetter() default JStringUtils.EMPTY;
 
   /**
    * This attribute defines what the getter method name
@@ -42,7 +42,7 @@ public @interface ProtobufAttribute
    * 
    * @return
    */
-  String protoBufGetter() default JStringUtils.EMPTY;
+  String protobufGetter() default JStringUtils.EMPTY;
 
   /**
    * This attribute defines what the getter method name
