@@ -1,9 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ca.jeb</groupId>
   <artifactId>protobuf-serializer</artifactId>
   <name>${project.groupId}:${project.artifactId}</name>
-  <version>2014.09.30</version>
+  <version>2014.10.01</version>
   <description>Use annotations to serialize POJO classes to Google Protobuf in Java</description>
   <inceptionYear>2014</inceptionYear>
   <url>https://github.com/ebourgeois/protobuf-serializer</url>
@@ -15,25 +17,32 @@
         <url>https://github.com/ebourgeois</url>
     </developer>
   </developers>
+  <licenses>
+    <license>
+        <name>GNU General Public License</name>
+        <url>https://gnu.org/licenses/gpl-3.0.txt</url>
+    </license>
+  </licenses>
+  <scm>
+      <connection>scm:git:git://github.com/ebourgeois/protobuf-serializer.git</connection>
+      <developerConnection>scm:git:git@github.com:ebourgeois/protobuf-serializer.git</developerConnection>
+      <url>http://github.com/ebourgeois/protobuf-serializer/master</url>
+  </scm>
   <properties>
-    <github.global.server>github</github.global.server>
     <maven.compiler.target>1.7</maven.compiler.target>
     <maven.compiler.source>1.7</maven.compiler.source>
-    <proto.executable.path>C:\Users\boureric\dev\bin\protoc</proto.executable.path>
+    <proto.executable.path>C:\Users\erick\dev\bin\protoc</proto.executable.path>
   </properties>
   <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
     <repository>
-        <id>internal.repo</id>
-        <name>Temporary Staging Repository</name>
-        <url>file://${project.build.directory}/mvn-repo</url>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
-  <repositories>
-      <repository>
-         <id>common-java-mvn-repo</id>
-         <url>https://raw.github.com/ebourgeois/common-java/mvn-repo/</url>
-       </repository>
-  </repositories>
   <dependencies>
     <dependency>
       <groupId>ca.jeb</groupId>
@@ -183,36 +192,43 @@
           </executions>
        </plugin>
        <plugin>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.1</version>
-          <configuration>
-              <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
-          </configuration>
-      </plugin>
+         <groupId>org.sonatype.plugins</groupId>
+         <artifactId>nexus-staging-maven-plugin</artifactId>
+         <version>1.6.3</version>
+         <extensions>true</extensions>
+         <configuration>
+           <serverId>ossrh</serverId>
+           <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+           <autoReleaseAfterClose>true</autoReleaseAfterClose>
+         </configuration>
+       </plugin>
        <plugin>
-          <groupId>com.github.github</groupId>
-          <artifactId>site-maven-plugin</artifactId>
-          <version>0.10</version>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-gpg-plugin</artifactId>
+         <version>1.5</version>
+         <executions>
+           <execution>
+             <id>sign-artifacts</id>
+             <phase>verify</phase>
+             <goals>
+               <goal>sign</goal>
+             </goals>
+           </execution>
+         </executions>
+       </plugin>
+       <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5</version>
           <configuration>
-              <message>Maven artifacts for ${project.version}</message>
-              <noJekyll>true</noJekyll>
-              <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-              <branch>refs/heads/mvn-repo</branch>
-              <merge>true</merge>
-              <includes><include>**/*</include></includes>
-              <repositoryName>protobuf-serializer</repositoryName>
-              <repositoryOwner>ebourgeois</repositoryOwner> 
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <useReleaseProfile>false</useReleaseProfile>
+            <releaseProfiles>release</releaseProfiles>
+            <goals>deploy</goals>
           </configuration>
-          <executions>
-            <execution>
-              <goals>
-                <goal>site</goal>
-              </goals>
-              <phase>deploy</phase>
-            </execution>
-          </executions>
-      </plugin>
-      <plugin>
+        </plugin>
+       <!-- Javadoc and Sources -->
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
           <version>2.2.1</version>

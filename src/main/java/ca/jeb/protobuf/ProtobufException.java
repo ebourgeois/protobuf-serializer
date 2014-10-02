@@ -7,20 +7,20 @@ import ca.jeb.common.infra.JException;
 /**
  * Exception when raised during the serialization of Protobuf attributes.
  * 
- * @see ca.jeb.common.gpb.ProtoBufSerializer
+ * @author <a href="mailto:erick@jeb.ca">Erick Bourgeois</a>
  */
 public class ProtobufException extends JException
 {
   /**
-   * @param e - Exception
+   * @param exception - {@link Exception}
    */
-  public ProtobufException(Exception e)
+  public ProtobufException(Exception exception)
   {
-    super(e);
+    super(exception);
   }
 
   /**
-   * @param string
+   * @param string - Exception string
    */
   public ProtobufException(String string)
   {
@@ -28,11 +28,11 @@ public class ProtobufException extends JException
   }
 
   /**
-   * @param string
-   * @param e
+   * @param string - Exception string
+   * @param exception - {@link Exception}
    */
-  public ProtobufException(String string, Exception e)
+  public ProtobufException(String string, Exception exception)
   {
-    super(string, e);
+    super(string, exception);
   }
 }

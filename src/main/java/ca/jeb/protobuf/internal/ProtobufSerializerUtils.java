@@ -24,7 +24,7 @@ import com.google.protobuf.GeneratedMessage;
 /**
  * Utility class to help out the ProtobufSerializer.
  * 
- * @author <a href="mailto:boureric@ms.com">boureric</a>
+ * @author <a href="mailto:erick@jeb.ca">Erick Bourgeois</a>
  */
 public final class ProtobufSerializerUtils
 {
@@ -45,8 +45,8 @@ public final class ProtobufSerializerUtils
    * this get's converted to <code>int</code>.
    * 
    * @param value - POJO object
-   * @param gpbClass -
-   * @return Class<? extends Object> - actual Protobuf class to use in setter
+   * @param protobufClass - the Protobuf class
+   * @return Class&lt;? extends Object&gt; - actual Protobuf class to use in setter
    */
   public static final Class<? extends Object> getProtobufClass(Object value, Class<? extends Object> protobufClass)
   {
@@ -76,9 +76,9 @@ public final class ProtobufSerializerUtils
   /**
    * Return a ProtobufEntity annotation from any object sent, null if there is none.
    * 
-   * @param object - any object
+   * @param clazz - any Class
    * @return ProtobufEntity annotation
-   * @see ProtobufEntity
+   * @see ca.jeb.protobuf.ProtobufEntity
    */
   public static final ProtobufEntity getProtobufEntity(Class<?> clazz)
   {
@@ -107,7 +107,7 @@ public final class ProtobufSerializerUtils
   /**
    * Returns true if there is a ProtobufEntity annotation on this class.
    * 
-   * @param clazz - any class
+   * @param clazz - any Class
    * @return boolean - true, if there is a ProtobufEntity annotation, else, false
    * @see ProtobufEntity
    */
@@ -125,8 +125,8 @@ public final class ProtobufSerializerUtils
   /**
    * Return the Protobuf Class based on the pojo class, i.e. grab the value from the ProtobufEntity annotation.
    * 
-   * @param clazz
-   * @return Class
+   * @param clazz - any Class
+   * @return Class&lt;? extends GeneratedMessage&gt;
    */
   public static final Class<? extends GeneratedMessage> getProtobufClassFromPojoAnno(Class<?> clazz)
   {
@@ -144,8 +144,8 @@ public final class ProtobufSerializerUtils
    * Essentially, the only fields that will be returned if they have
    * the ProtobufAttribute annotation.
    * 
-   * @param fromClazz
-   * @return Map<Field, ProtobufAttribute>
+   * @param fromClazz - Class&lt;? extends Object&gt;
+   * @return Map&lt;Field, ProtobufAttribute&gt;
    */
   public static final Map<Field, ProtobufAttribute> getAllProtbufFields(Class<? extends Object> fromClazz)
   {
@@ -183,15 +183,13 @@ public final class ProtobufSerializerUtils
    */
 
   /**
-   * Return the setter for the Protobuf builder.
-   * <ol>
-   * <li>Defaults to just "set" + upper case the first character of the fieldName.
-   * <li>If it's a collection, use the "addAll" type method Protobuf has
-   * <li>Otherwise, use the override value from the user's ProtobufAttribute annotation
-   * <ol>
+   * Return the setter for the Protobuf builder. <br>
+   * 1. Defaults to just "set" + upper case the first character of the fieldName.
+   * 2. If it's a collection, use the "addAll" type method Protobuf has
+   * 3. Otherwise, use the override value from the user's ProtobufAttribute annotation <br>
    * 
-   * @param protobufAttribute
-   * @param fieldName - String
+   * @param protobufAttribute - {@link ProtobufAttribute}
+   * @param field - String
    * @param fieldValue - POJO's filed Object
    * @return String - the setter to be used on Protobuf builder
    */
@@ -236,9 +234,9 @@ public final class ProtobufSerializerUtils
   /**
    * Retrieve the getter against the Protobuf class; default is to is "get" plus upper case first character of the field name.
    * 
-   * @param protobufAttribute
-   * @param field
-   * @return
+   * @param protobufAttribute - {@link ProtobufAttribute}
+   * @param field - {@link Field}
+   * @return String
    */
   public static final String getProtobufGetter(ProtobufAttribute protobufAttribute, Field field)
   {

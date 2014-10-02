@@ -10,7 +10,10 @@ import java.lang.annotation.Target;
 import com.google.protobuf.GeneratedMessage;
 
 /**
- * ProtoBufEntity.
+ * ProtoBufEntity annotation for defining your Protobuf entity
+ * on your POJO class.
+ * 
+ * @author <a href="mailto:erick@jeb.ca">Erick Bourgeois</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
@@ -21,7 +24,7 @@ public @interface ProtobufEntity
    * interface should consider this field to be required
    * with ProtoBuf class.
    * 
-   * @return
+   * @return Class&lt;? extends GeneratedMessage&gt;
    */
   Class<? extends GeneratedMessage> value();
 }

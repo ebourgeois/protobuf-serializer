@@ -9,14 +9,14 @@ import ca.jeb.protobuf.ProtobufAnnotationException;
 
 /**
  * Converts BigDecimal values to double and vice-versa.
+ * 
+ * @author <a href="mailto:erick@jeb.ca">Erick Bourgeois</a>
  */
 public class BigDecimalDoubleConverter implements IProtobufConverter
 {
 
   /**
-   * @param sourceObject - the source object, i.e. BigDecimal
-   * @return double
-   * @throws ProtobufAnnotationException
+   * @see ca.jeb.protobuf.IProtobufConverter#convertToProtobuf(java.lang.Object)
    */
   @Override
   public Object convertToProtobuf(Object sourceObject) throws ProtobufAnnotationException

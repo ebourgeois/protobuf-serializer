@@ -6,12 +6,14 @@ import ca.jeb.protobuf.IProtobufConverter;
 import ca.jeb.protobuf.ProtobufAnnotationException;
 
 /**
- * This is a class to convert Strings to Date objects.
+ * This is a NULL converter.
+ * 
+ * @author <a href="mailto:erick@jeb.ca">Erick Bourgeois</a>
  */
 public class NullConverter implements IProtobufConverter
 {
   /**
-   * @see com.ms.corptsy.cmscore.infra.annotations.IProtoBufConverter#convertToProtoBuf(java.lang.Object)
+   * @see ca.jeb.protobuf.IProtobufConverter#convertToProtobuf(java.lang.Object)
    */
   @Override
   public Object convertToProtobuf(Object sourceObject) throws ProtobufAnnotationException
@@ -20,7 +22,7 @@ public class NullConverter implements IProtobufConverter
   }
 
   /**
-   * @see com.ms.corptsy.cmscore.infra.annotations.IProtoBufConverter#convertFromProtoBuf(java.lang.Object)
+   * @see ca.jeb.protobuf.IProtobufConverter#convertFromProtobuf(java.lang.Object)
    */
   @Override
   public Object convertFromProtobuf(Object sourceObject) throws ProtobufAnnotationException

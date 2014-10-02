@@ -7,12 +7,14 @@ import ca.jeb.protobuf.ProtobufAnnotationException;
 
 /**
  * Converts String values to boolean going to Protobuf, and vice-versa from Protobuf.
+ * 
+ * @author <a href="mailto:erick@jeb.ca">Erick Bourgeois</a>
  */
 public class StringBooleanConverter implements IProtobufConverter
 {
 
   /**
-   * @see com.ms.corptsy.cmscore.infra.annotations.IProtobufConverter#convert(java.lang.Object)
+   * @see ca.jeb.protobuf.IProtobufConverter#convertToProtobuf(java.lang.Object)
    */
   @Override
   public Object convertToProtobuf(Object sourceObject) throws ProtobufAnnotationException
@@ -23,7 +25,7 @@ public class StringBooleanConverter implements IProtobufConverter
   }
 
   /**
-   * @see com.ms.corptsy.cmscore.infra.annotations.IProtobufConverter#convertFromProtobuf(java.lang.Object)
+   * @see ca.jeb.protobuf.IProtobufConverter#convertFromProtobuf(java.lang.Object)
    */
   @Override
   public Object convertFromProtobuf(Object sourceObject) throws ProtobufAnnotationException

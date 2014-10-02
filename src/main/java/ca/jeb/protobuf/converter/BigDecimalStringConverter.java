@@ -9,12 +9,14 @@ import ca.jeb.protobuf.ProtobufAnnotationException;
 
 /**
  * Converts BigDecimal values to String and vice-versa.
+ * 
+ * @author <a href="mailto:erick@jeb.ca">Erick Bourgeois</a>
  */
 public class BigDecimalStringConverter implements IProtobufConverter
 {
 
   /**
-   * @see com.ms.corptsy.cmscore.infra.annotations.IProtoBufConverter#convert(java.lang.Object)
+   * @see ca.jeb.protobuf.IProtobufConverter#convertToProtobuf(java.lang.Object)
    */
   @Override
   public Object convertToProtobuf(Object sourceObject) throws ProtobufAnnotationException
@@ -25,7 +27,7 @@ public class BigDecimalStringConverter implements IProtobufConverter
   }
 
   /**
-   * @see com.ms.corptsy.cmscore.infra.annotations.IProtoBufConverter#convertFromProto(java.lang.Object)
+   * @see ca.jeb.protobuf.IProtobufConverter#convertFromProtobuf(java.lang.Object)
    */
   @Override
   public Object convertFromProtobuf(Object sourceObject) throws ProtobufAnnotationException

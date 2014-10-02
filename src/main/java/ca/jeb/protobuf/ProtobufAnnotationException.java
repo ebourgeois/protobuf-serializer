@@ -2,24 +2,23 @@
 
 package ca.jeb.protobuf;
 
-
 /**
  * Exception when raised during the serialization of Protobuf attributes.
  * 
- * @see ca.jeb.common.gpb.ProtoBufSerializer
+ * @see ca.jeb.protobuf.ProtobufSerializer
  */
 public class ProtobufAnnotationException extends ProtobufException
 {
   /**
-   * @param e - Exception
+   * @param exception - {@link Exception}
    */
-  public ProtobufAnnotationException(Exception e)
+  public ProtobufAnnotationException(Exception exception)
   {
-    super(e);
+    super(exception);
   }
 
   /**
-   * @param string
+   * @param string - Exception string
    */
   public ProtobufAnnotationException(String string)
   {
@@ -27,11 +26,11 @@ public class ProtobufAnnotationException extends ProtobufException
   }
 
   /**
-   * @param string
-   * @param e
+   * @param string - Exception string
+   * @param exception - {@link Exception}
    */
-  public ProtobufAnnotationException(String string, Exception e)
+  public ProtobufAnnotationException(String string, Exception exception)
   {
-    super(string, e);
+    super(string, exception);
   }
 }

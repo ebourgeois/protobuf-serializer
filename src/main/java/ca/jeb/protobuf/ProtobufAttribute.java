@@ -11,7 +11,10 @@ import ca.jeb.common.infra.JStringUtils;
 import ca.jeb.protobuf.converter.NullConverter;
 
 /**
- * ProtoBufAttribute.
+ * ProtobufAttribute annotation for defining your POJO attributes
+ * for serialization to and from Protobuf classes/entities.
+ * 
+ * @author <a href="mailto:erick@jeb.ca">Erick Bourgeois</a>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
@@ -22,25 +25,25 @@ public @interface ProtobufAttribute
    * interface should consider this field to be required
    * with ProtoBuf class.
    * 
-   * @return
+   * @return boolean
    */
   boolean required() default false;
 
   /**
    * This attribute defines what the target method should be
-   * used on the {@link ProtoBufEntity}. This will default to
+   * used on the {@link ProtobufEntity}. This will default to
    * "set" + upperCaseFirst(fieldName).
    * 
-   * @return
+   * @return String
    */
   String protobufSetter() default JStringUtils.EMPTY;
 
   /**
    * This attribute defines what the getter method name
-   * should be to retrieve the data <b>from</b> the {@link ProtoBufEntity} object.
+   * should be to retrieve the data <b>from</b> the {@link ProtobufEntity} object.
    * This defaults to "get" + upperCaseFirst(fieldName).
    * 
-   * @return
+   * @return String
    */
   String protobufGetter() default JStringUtils.EMPTY;
 
@@ -49,7 +52,7 @@ public @interface ProtobufAttribute
    * should be to retrieve the data <b>from</b> the POJO object.
    * This defaults to "get" + upperCaseFirst(fieldName).
    * 
-   * @return
+   * @return String
    */
   String pojoGetter() default JStringUtils.EMPTY;
 
@@ -58,7 +61,7 @@ public @interface ProtobufAttribute
    * should be used on the POJO object. This will default to
    * "set" + upperCaseFirst(fieldName).
    * 
-   * @return
+   * @return String
    */
   String pojoSetter() default JStringUtils.EMPTY;
 
@@ -67,7 +70,7 @@ public @interface ProtobufAttribute
    * This converter will be used to convert the value from the
    * POJO objects to the Google ProtoBuf object; default is {@link NullConverter}.
    * 
-   * @return
+   * @return Class&lt;? extends IProtobufConverter&gt;
    */
   Class<? extends IProtobufConverter> converter() default NullConverter.class;
 }

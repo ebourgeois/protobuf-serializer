@@ -28,6 +28,13 @@ import com.google.protobuf.Message;
 import com.google.protobuf.Message.Builder;
 
 /**
+ * This class' has two methods for serialization:
+ * <ol>
+ * <li>toProtobuf: serialize to a Protobuf
+ * <li>fromProtobuf: serialize from a Protobuf object
+ * </ol>
+ * This class can be used as Java bean and thus a singleton.
+ * 
  * @author <a href="mailto:erick@jeb.ca">Erick Bourgeois</a>
  */
 public class ProtobufSerializer implements IProtobufSerializer
@@ -38,7 +45,7 @@ public class ProtobufSerializer implements IProtobufSerializer
    * @see ca.jeb.protobuf.IProtobufSerializer#toProtobuf(java.lang.Object)
    */
   @Override
-  @SuppressWarnings({ "unchecked", "rawtypes" })
+  @SuppressWarnings({"unchecked", "rawtypes"})
   public Message toProtobuf(Object pojo) throws ProtobufException
   {
     try
@@ -102,7 +109,7 @@ public class ProtobufSerializer implements IProtobufSerializer
   }
 
   /**
-   * @see ca.jeb.common.gpb.IProtobufGenerator#fromProtobuf(com.google.protobuf.GeneratedMessage)
+   * @see ca.jeb.protobuf.IProtobufSerializer#fromProtobuf(Message, Class)
    */
   @Override
   public Object fromProtobuf(Message protobuf, Class<?> pojoClazz) throws ProtobufException
