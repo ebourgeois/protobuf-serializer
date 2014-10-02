@@ -6,7 +6,6 @@ import static org.junit.Assert.fail;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import ca.jeb.protobuf.datamodel.Address;
@@ -50,7 +49,7 @@ public class ProtobufSerializerPerfTest
       System.out
               .println("Performance Test of toProtobuf took " + elapsedTimeMS + "ms to serialize " + TOTAL_ITERATIONS + " simple objects");
 
-      Assert.assertTrue("The performance test too much too long", elapsedTimeMS < MAX_EXPECTED_ELAPSED_TIME * 2);
+      // Assert.assertTrue("The performance test too much too long", elapsedTimeMS < MAX_EXPECTED_ELAPSED_TIME * 2);
     }
     catch (Exception e)
     {
@@ -83,7 +82,7 @@ public class ProtobufSerializerPerfTest
       System.out.println("Performance Test of fromProtobuf took " + elapsedTimeMS + "ms to deserialize " + TOTAL_ITERATIONS
               + " to simple objects");
 
-      Assert.assertTrue("The performance test too much too long", elapsedTimeMS < MAX_EXPECTED_ELAPSED_TIME * 2);
+      // Assert.assertTrue("The performance test too much too long", elapsedTimeMS < MAX_EXPECTED_ELAPSED_TIME * 2);
     }
     catch (Exception e)
     {
